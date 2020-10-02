@@ -12,9 +12,9 @@
             document.addEventListener("keydown", keypush);
             setInterval(game, 1000 / 15);
         }
-        px = py = 10;
-        gs = tc = 20;
-        ax = ay = 15;
+        px = py = 15;
+        gs = tc = 25;
+        ax = ay = 10;
         xv = yv = 0;
         trail = [];
         tail=5;
@@ -55,29 +55,50 @@
                 ay = Math.floor(Math.random() * tc);
             }
             ctx.fillStyle = "red";
+            console.log(ax*gs,ay*gs);
             ctx.fillRect(ax*gs,ay*gs,gs-2,gs-2);
         }
         function keypush(evt) {
             switch (evt.keyCode) {
                 case 37:
-                    xv = -1; yv = 0;
+                    moveLeft();          
                     break;
                 case 38:
-                    xv = 0; yv = -1;
+                    moveUp();
                     break;
                 case 39:
-                    xv = 1; yv = 0;
+                    moveRight();
                     break;
                 case 40:
-                    xv = 0; yv = 1;
+                    moveDown();
                     break;
             }
+        }
+        function moveUp(){
+            xv = 0; yv = -1;
+        }
+        function moveDown(){
+            xv = 0; yv = 1;
+        }
+        function moveLeft(){
+            xv = -1; yv = 0;
+        }
+        function moveRight(){
+            xv = 1; yv = 0;
         }
     </script>
 </head>
 
 <body>
-    <canvas id="gc" width="400"  height="400"></canvas>
+    <div>
+        <canvas id="gc" width="625"  height="625"></canvas>
+        <div style="width: 90px; text-align: center;">
+        <button onclick="moveUp()">↑</button>
+        </div>
+        <div style="width: 90px; text-align: center;">
+            <button onclick="moveLeft()">←</button><button onclick="moveDown()">↓</button><button onclick="moveRight()">→</button>
+        </div>
+    </div>
     
 </body>
 
